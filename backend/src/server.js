@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const databaseConfig = require('./config/database');
 
@@ -15,6 +16,8 @@ mongoose.connect(
 
 const app = express();
 
+// app.use(cors({origin: 'http://localhost:3333'})) only allow connections from this address
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 
