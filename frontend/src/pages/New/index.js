@@ -23,6 +23,7 @@ export default function New() {
         htmlFor="getPhoto"
         id="thumbnail"
         style={{ backgroundImage: `url(${preview})` }}
+        className={thumbnail ? 'hasThumbnail' : ''}
       >
         <input
           id="getPhoto"
