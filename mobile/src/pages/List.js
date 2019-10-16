@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, AsyncStorage } from 'react-native';
+import { SafeAreaView, Text, AsyncStorage } from 'react-native';
 
 export default function List() {
   const [techs, setTechs] = useState([]);
@@ -11,8 +11,8 @@ export default function List() {
   }, []);
 
   return (
-    <View>
+    <SafeAreaView>
       <Text>{techs}</Text>
-    </View>
+    </SafeAreaView>
   );
 }
