@@ -1,18 +1,24 @@
 import React from 'react';
 import {
+  KeyboardAvoidingView,
   View,
   Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   TextInput,
+  Platform,
 } from 'react-native';
 
 import logo from '../assets/logo.png';
 
 export default function Login() {
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      enabled={Platform.OS === 'ios'}
+      behavior="padding"
+      style={styles.container}
+    >
       <Image source={logo} />
 
       <View style={styles.form}>
@@ -40,7 +46,7 @@ export default function Login() {
           <Text style={styles.buttonText}>Encontrar spots</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
