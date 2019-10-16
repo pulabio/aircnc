@@ -7,18 +7,13 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  Platform,
 } from 'react-native';
 
 import logo from '../assets/logo.png';
 
 export default function Login() {
   return (
-    <KeyboardAvoidingView
-      enabled={Platform.OS === 'ios'}
-      behavior="padding"
-      style={styles.container}
-    >
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <Image source={logo} />
 
       <View style={styles.form}>
