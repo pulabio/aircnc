@@ -20,8 +20,7 @@ export default function List() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image source={logo} />
-      <Text>{techs}</Text>
+      <Image style={styles.logo} source={logo} />
     </SafeAreaView>
   );
 }
@@ -29,5 +28,11 @@ export default function List() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  logo: {
+    height: 32,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    marginTop: 30,
   },
 });
