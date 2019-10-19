@@ -5,6 +5,7 @@ import {
   Image,
   AsyncStorage,
   SafeAreaView,
+  ScrollView,
 } from 'react-native';
 
 import SpotList from '../components/SpotList';
@@ -23,9 +24,11 @@ export default function List() {
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={logo} />
-      {techs.map(tech => (
-        <SpotList key={tech} tech={tech} />
-      ))}
+      <ScrollView>
+        {techs.map(tech => (
+          <SpotList key={tech} tech={tech} />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 }
