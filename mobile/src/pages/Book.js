@@ -6,13 +6,34 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
+
+import api from '../services/api';
 
 export default function Book({ navigation }) {
   const [date, setDate] = useState('');
-  const spotID = navigation.getParam('spotId');
+  const spotId = navigation.getParam('spotId');
 
-  function handleSubmit() {}
+  async function handleSubmit() {
+    const user_id = await AsyncStorage.getItem('user');
+
+    await api.post(
+      `/spots/${spotId}/bookings`,
+      {
+        date,
+      },
+      {
+        headers: { user_id },
+      }
+    );
+    Alert.alert('Solicitação de reserva enviada');
+    navigation.navigate('List');
+  }
+
+  function handleCancel() {
+    navigation.navigate('List');
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,7 +52,7 @@ export default function Book({ navigation }) {
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, styles.cancelButton]}
-        onPress={() => handleSubmit()}
+        onPress={() => handleCancel()}
       >
         <Text style={styles.buttonText}>Cancelar</Text>
       </TouchableOpacity>
