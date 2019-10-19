@@ -25,8 +25,11 @@ function SpotList({ tech, navigation }) {
     loadSpots();
   }, []);
 
-  function handleNavigate() {
-    navigation.navigate('Book');
+  function handleNavigate(spotId) {
+    console.log(spotId);
+    navigation.navigate('Book', {
+      spotId,
+    });
   }
 
   return (
@@ -50,7 +53,10 @@ function SpotList({ tech, navigation }) {
             <Text style={styles.price}>
               {item.price ? `${item.price}/dia` : 'GRATUITO'}
             </Text>
-            <TouchableOpacity style={styles.button} onPress={handleNavigate}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleNavigate(item._id)}
+            >
               <Text style={styles.buttonText}>Solicitar reserva</Text>
             </TouchableOpacity>
           </View>
