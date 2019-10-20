@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const socketio = require('socket.io');
+const http = require('http');
 
 const databaseConfig = require('./config/database');
 
@@ -16,6 +18,12 @@ mongoose.connect(
 );
 
 const app = express();
+const server = http.Server(app);
+const io = socketio(server);
+
+io.on('connection', socket => {
+  console.log('usuário conectado', socket.id);
+});
 
 // app.use(cors({origin: 'http://localhost:3333'})) only allow connections from this address
 app.use(cors());
@@ -23,4 +31,4 @@ app.use(express.json());
 app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(routes);
 
-app.listen(3333);
+server.listen(3333);
