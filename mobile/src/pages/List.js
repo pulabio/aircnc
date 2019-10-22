@@ -8,14 +8,19 @@ import {
   AsyncStorage,
   SafeAreaView,
   ScrollView,
+  TouchableOpacity
 } from 'react-native';
 
 import SpotList from '../components/SpotList';
 
 import logo from '../assets/logo.png';
 
-export default function List() {
+export default function List({navigation}) {
   const [techs, setTechs] = useState([]);
+  async function handleLogout(){
+    await AsyncStorage.removeItem('user');
+    navigation.navigate('Login');
+  }
 
   useEffect(() => {
     AsyncStorage.getItem('user').then(user_id => {
@@ -48,6 +53,12 @@ export default function List() {
           <SpotList key={tech} tech={tech} />
         ))}
       </ScrollView>
+      <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleLogout()}
+            >
+              <Text style={styles.buttonText}>Logout</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -61,5 +72,21 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignSelf: 'center',
     marginTop: 30,
+  },
+  button: {
+    height: 32,
+    marginHorizontal: 30,
+    marginBottom: 5,
+    backgroundColor: '#f05a5b',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 2,
+    marginTop: 15,
+  },
+
+  buttonText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
 });
