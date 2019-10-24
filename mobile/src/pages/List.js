@@ -54,7 +54,7 @@ export default function List({navigation}) {
         ))}
       </ScrollView>
       <TouchableOpacity
-              style={styles.button}
+              style={[styles.button, styles.logoutButton]}
               onPress={() => handleLogout()}
             >
               <Text style={styles.buttonText}>Logout</Text>
@@ -82,6 +82,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 2,
     marginTop: 15,
+  },
+
+  logoutButton: {
+    borderRadius: 8,
+    marginBottom: 10
   },
 
   buttonText: {
